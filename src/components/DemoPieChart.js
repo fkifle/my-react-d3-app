@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PieChart from 'components/charts/PieChart'
+import PieChart from './charts/PieChart'
 
-const {arrayOf, string, func, bool} = PropTypes
+const { arrayOf, string, func, bool } = PropTypes
 
 const DemoPieChart = props => {
-  const {hover, filter, toggleFilter, ...otherProps} = props
+  const { hover, filter, toggleFilter, ...otherProps } = props
   const filteredData = hover
     ? ` (letter${hover.length > 1 ? 's' : ''}: ${hover.join(', ')})`
     : ''
   return (
-    <div style={{width: '100%', height: '100%', display: 'inline-block'}}>
+    <div style={{ width: '100%', height: '100%', display: 'inline-block' }}>
       <div>
         <input type='checkbox' checked={filter} onChange={toggleFilter} />
         Refresh with filtered data?

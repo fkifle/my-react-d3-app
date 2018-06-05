@@ -1,5 +1,5 @@
 import {fromJS} from 'immutable'
-import {NEW_TEXT} from 'redux/constants'
+import {NEW_TEXT} from '../constants'
 
 const newText = (state, action) => {
   return state.mergeDeep(fromJS(action.text))

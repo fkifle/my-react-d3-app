@@ -6,7 +6,7 @@ import {
   SET_COLOR,
   INCREMENT_RENDER_COUNT,
   SELECT_THEME
-} from 'redux/constants'
+} from './constants'
 
 export const newText = text => ({
   type: NEW_TEXT,

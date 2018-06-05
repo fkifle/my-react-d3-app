@@ -1,11 +1,11 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {createSelector} from 'reselect'
-import DemoPieChart from 'components/DemoPieChart'
-import {countLetters} from 'utils/stringStats'
-import {incrementRenderCount} from 'redux/actions'
-import toJS from 'hocs/toJS'
-import {getText, getHover} from 'redux/selectors'
+import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
+import DemoPieChart from '../components/DemoPieChart'
+import { countLetters } from '../utils/stringStats'
+import { incrementRenderCount } from '../redux/actions'
+import toJS from '../hocs/toJS'
+import { getText, getHover } from '../redux/selectors'
 
 const getFilterEnabled = (state, ownProps) => ownProps.filter
 

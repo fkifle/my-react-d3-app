@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import ChatInput from 'components/styled/ChatInput'
-import Pallet from 'components/Pallet'
+import ChatInput from './styled/ChatInput'
+import Pallet from './Pallet'
 
-const {arrayOf, shape, string, func, number} = PropTypes
+const { arrayOf, shape, string, func, number } = PropTypes
 
 const InlineDiv = styled.div`
   display: inline-block;
@@ -44,7 +44,7 @@ class DemoChat extends React.Component {
   }
 
   handleChange = user => e => {
-    this.props.updateText({[user]: e.target.value})
+    this.props.updateText({ [user]: e.target.value })
   }
 
   toggleAutoRefresh = () => {
@@ -57,7 +57,7 @@ class DemoChat extends React.Component {
       } else {
         clearInterval(this.autoRefreshInterval)
       }
-      return {autoRefresh}
+      return { autoRefresh }
     })
   }
 
@@ -72,9 +72,9 @@ class DemoChat extends React.Component {
       setUserColor,
       generateText
     } = this.props
-    const {autoRefresh, refreshPeriod} = this.state
+    const { autoRefresh, refreshPeriod } = this.state
     return (
-      <InlineDiv style={{width: '100%', height: '100%', textAlign: 'center'}}>
+      <InlineDiv style={{ width: '100%', height: '100%', textAlign: 'center' }}>
         <div>
           {users.map((user, index) => {
             return (
@@ -92,7 +92,7 @@ class DemoChat extends React.Component {
           })}
         </div>
         <button onClick={generateText}>Generate new text</button>
-        <div style={{marginTop: 5}}>
+        <div style={{ marginTop: 5 }}>
           <input
             type="checkbox"
             checked={autoRefresh}

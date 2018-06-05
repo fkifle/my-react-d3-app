@@ -1,4 +1,4 @@
-import {TICK} from 'redux/constants'
+import { TICK } from '../constants'
 
 const incrementTick = (state, action) => {
   return state + 1

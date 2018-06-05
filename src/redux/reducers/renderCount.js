@@ -1,4 +1,4 @@
-import {INCREMENT_RENDER_COUNT} from 'redux/constants'
+import {INCREMENT_RENDER_COUNT} from '../constants'
 
 const incrementRenderCount = (state, action) => {
   return state.updateIn(

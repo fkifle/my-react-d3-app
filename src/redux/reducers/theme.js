@@ -1,4 +1,4 @@
-import {SELECT_THEME} from 'redux/constants'
+import { SELECT_THEME } from '../constants'
 
 const selectTheme = (state, action) => {
   return action.theme

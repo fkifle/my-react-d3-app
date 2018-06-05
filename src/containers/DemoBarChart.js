@@ -1,10 +1,10 @@
-import {connect} from 'react-redux'
-import {createSelector} from 'reselect'
-import DemoBarChart from 'components/DemoBarChart'
-import {countLetters, ALPHABET} from 'utils/stringStats'
-import {setHover, incrementRenderCount} from 'redux/actions'
-import toJS from 'hocs/toJS'
-import {getText, getHover} from 'redux/selectors'
+import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
+import DemoBarChart from '../components/DemoBarChart'
+import { countLetters, ALPHABET } from '../utils/stringStats'
+import { setHover, incrementRenderCount } from '../redux/actions'
+import toJS from '../hocs/toJS'
+import { getText, getHover } from '../redux/selectors'
 
 const getData = createSelector(getText, text => {
   return ALPHABET.map(l => {
@@ -15,7 +15,7 @@ const getData = createSelector(getText, text => {
           [user]: countLetters(userText, l)
         }
       },
-      {x: l}
+      { x: l }
     )
   })
 })
@@ -26,10 +26,10 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  setHover (letter) {
+  setHover(letter) {
     dispatch(setHover(letter))
   },
-  incrementRenderCount (mode) {
+  incrementRenderCount(mode) {
     dispatch(incrementRenderCount('barchart', mode))
   }
 })

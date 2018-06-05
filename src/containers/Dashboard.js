@@ -1,8 +1,8 @@
-import {connect} from 'react-redux'
-import Dashboard from 'components/Dashboard'
-import {incrementRenderCount} from 'redux/actions'
-import toJS from 'hocs/toJS'
-import {getHover, getSaturatedColors} from 'redux/selectors'
+import { connect } from 'react-redux'
+import Dashboard from '../components/Dashboard'
+import { incrementRenderCount } from '../redux/actions'
+import toJS from '../hocs/toJS'
+import { getHover, getSaturatedColors } from '../redux/selectors'
 
 const mapStateToProps = (state, ownProps) => ({
   hover: getHover(state),
@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  incrementRenderCount (mode) {
+  incrementRenderCount(mode) {
     dispatch(incrementRenderCount('dashboard', mode))
   }
 })

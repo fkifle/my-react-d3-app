@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import _ from 'lodash'
-import themes from 'utils/themes'
-import {selectTheme} from 'redux/actions'
+import themes from '../utils/themes'
+import { selectTheme } from '../redux/actions'
 
-const {func} = PropTypes
+const { func } = PropTypes
 
 const List = styled.ul`
   position: absolute;

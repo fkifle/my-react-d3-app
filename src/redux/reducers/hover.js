@@ -1,5 +1,5 @@
-import {fromJS} from 'immutable'
-import {SET_HOVER} from 'redux/constants'
+import { fromJS } from 'immutable'
+import { SET_HOVER } from '../constants'
 
 const setHover = (state, action) => {
   return fromJS(action.letters)

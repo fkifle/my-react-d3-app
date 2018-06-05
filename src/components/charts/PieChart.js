@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {withFauxDOM} from 'react-faux-dom'
+import { withFauxDOM } from 'react-faux-dom'
 import styled from 'styled-components'
 import _ from 'lodash'
-import Tooltip from 'components/Tooltip'
-import withD3Renderer from 'hocs/withD3Renderer'
+import Tooltip from '../Tooltip'
+import withD3Renderer from '../../hocs/withD3Renderer'
 const d3 = {
   ...require('d3-scale'),
   ...require('d3-selection'),
@@ -13,22 +13,22 @@ const d3 = {
   ...require('d3-interpolate')
 }
 
-const {arrayOf, string, number, shape} = PropTypes
+const { arrayOf, string, number, shape } = PropTypes
 const LOADING = 'loading...'
 
 const Title = styled.div`
   text-align: center;
   position: relative;
-  top: -${({height}) => height * 1 / 5}px;
+  top: -${({ height }) => height * 1 / 5}px;
 `
 
 const Wrapper = styled.div`
   position: relative;
   display: inline-block;
   .tooltip {
-    width: ${({width}) => width / 5}px;
-    left: ${({width}) => width * 2 / 5}px;
-    top: ${({height}) => height * 3 / 5}px;
+    width: ${({ width }) => width / 5}px;
+    left: ${({ width }) => width * 2 / 5}px;
+    top: ${({ height }) => height * 3 / 5}px;
   }
 `
 
@@ -51,7 +51,7 @@ class PieChart extends React.Component {
   }
 
   setTooltip = user => {
-    this.setState(state => ({tooltip: user}))
+    this.setState(state => ({ tooltip: user }))
   }
 
   computeTooltipContent = () => {
@@ -62,7 +62,7 @@ class PieChart extends React.Component {
   }
 
   render() {
-    const {width, height, title, chart} = this.props
+    const { width, height, title, chart } = this.props
     return (
       <Wrapper className="piechart" width={width} height={height}>
         {chart}
@@ -137,7 +137,7 @@ class PieChart extends React.Component {
       .append('path')
       .attr('class', (d, i) => `data-group data-group-${data[i].name}`)
       .attr('d', arc)
-      .each(function(d) {
+      .each(function (d) {
         // store the initial angles for transitions
         // do not use arrow function here as scope is the path element
         this._current = d
@@ -159,5 +159,5 @@ PieChart.defaultProps = {
 }
 
 export default withFauxDOM(
-  withD3Renderer({updateOn: ['data', 'thickness', 'title']})(PieChart)
+  withD3Renderer({ updateOn: ['data', 'thickness', 'title'] })(PieChart)
 )

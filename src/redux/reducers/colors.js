@@ -1,4 +1,4 @@
-import {SET_COLOR} from 'redux/constants'
+import { SET_COLOR } from '../constants'
 
 const setColor = (state, action) => {
   return state.set(action.user, action.color)

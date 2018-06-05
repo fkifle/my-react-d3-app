@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {withFauxDOM} from 'react-faux-dom'
+import { withFauxDOM } from 'react-faux-dom'
 import styled from 'styled-components'
 import _ from 'lodash'
-import Tooltip from 'components/Tooltip'
-import withD3Renderer from 'hocs/withD3Renderer'
+import Tooltip from '../Tooltip'
+import withD3Renderer from '../../hocs/withD3Renderer'
 const d3 = {
   ...require('d3-scale'),
   ...require('d3-axis'),
@@ -12,7 +12,7 @@ const d3 = {
   ...require('d3-transition')
 }
 
-const {arrayOf, string, number, shape, func, array} = PropTypes
+const { arrayOf, string, number, shape, func, array } = PropTypes
 const LOADING = 'loading...'
 
 const Wrapper = styled.div`
@@ -46,21 +46,21 @@ class ScatterPlot extends React.Component {
 
   setTooltip = (group, x, y) => {
     this.setState(state => ({
-      tooltip: group ? {group, x, y} : null
+      tooltip: group ? { group, x, y } : null
     }))
   }
 
   computeTooltipProps = () => {
-    const {group, x, y} = this.state.tooltip
-    const hoveredData = _.find(this.props.data, {group, x, y})
+    const { group, x, y } = this.state.tooltip
+    const hoveredData = _.find(this.props.data, { group, x, y })
     if (hoveredData) {
       return {
         content: `"${x}${y}": ${hoveredData.n} in ${hoveredData.group}`,
-        style: {top: this.y(y) - 18, left: this.x(x) - 8}
+        style: { top: this.y(y) - 18, left: this.x(x) - 8 }
       }
     } else {
       return {
-        style: {visibility: 'hidden'}
+        style: { visibility: 'hidden' }
       }
     }
   }
@@ -94,7 +94,7 @@ class ScatterPlot extends React.Component {
 
     // d3 helpers
     const data = _.orderBy(_.cloneDeep(this.props.data), 'n', 'desc') // d3 mutates data
-    const margin = {top: 20, right: 20, bottom: 50, left: 30}
+    const margin = { top: 20, right: 20, bottom: 50, left: 30 }
     const graphWidth = width - margin.left - margin.right
     const graphHeight = height - margin.top - margin.bottom
     const x = d3.scalePoint().domain(xDomain).rangeRound([0, graphWidth])

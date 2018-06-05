@@ -1,11 +1,11 @@
-import {connect} from 'react-redux'
-import {createSelector} from 'reselect'
+import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
 import lorem from 'lorem-ipsum'
-import DemoChat from 'components/DemoChat'
-import {getColorWithDefaultSaturation, COLOR_PALLET} from 'utils/colors'
-import {newText, setColor, incrementRenderCount} from 'redux/actions'
-import toJS from 'hocs/toJS'
-import {getUsers, getTexts, getSaturatedColorsArray} from 'redux/selectors'
+import DemoChat from '../components/DemoChat'
+import { getColorWithDefaultSaturation, COLOR_PALLET } from '../utils/colors'
+import { newText, setColor, incrementRenderCount } from '../redux/actions'
+import toJS from '../hocs/toJS'
+import { getUsers, getTexts, getSaturatedColorsArray } from '../redux/selectors'
 
 const loremOption = {
   count: 2,
@@ -32,7 +32,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  generateText () {
+  generateText() {
     dispatch(
       newText({
         user1: lorem(loremOption),
@@ -40,13 +40,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       })
     )
   },
-  updateText (text) {
+  updateText(text) {
     dispatch(newText(text))
   },
-  setUserColor (user, color) {
+  setUserColor(user, color) {
     dispatch(setColor(user, color))
   },
-  incrementRenderCount (mode) {
+  incrementRenderCount(mode) {
     dispatch(incrementRenderCount('chat', mode))
   }
 })

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {withFauxDOM} from 'react-faux-dom'
+import { withFauxDOM } from 'react-faux-dom'
 import styled from 'styled-components'
 import _ from 'lodash'
-import Tooltip from 'components/Tooltip'
-import withD3Renderer from 'hocs/withD3Renderer'
+import Tooltip from '../Tooltip'
+import withD3Renderer from '../../hocs/withD3Renderer'
 const d3 = {
   ...require('d3-shape'),
   ...require('d3-array'),
@@ -14,14 +14,14 @@ const d3 = {
   ...require('d3-transition')
 }
 
-const {arrayOf, string, number, func, object} = PropTypes
+const { arrayOf, string, number, func, object } = PropTypes
 const LOADING = 'loading...'
 
 const Wrapper = styled.div`
   position: relative;
   display: inline-block;
   .tooltip {
-    visibility: ${({hover}) => (hover ? 'visible' : 'hidden')};
+    visibility: ${({ hover }) => (hover ? 'visible' : 'hidden')};
     -webkit-transition: top .2s ease-out, left .2s ease-out;
   }
 `
@@ -42,7 +42,7 @@ class BarChart extends React.Component {
   }
 
   computeTooltipProps = letter => {
-    const hoveredData = _.omit(_.find(this.props.data, {x: letter}), 'x')
+    const hoveredData = _.omit(_.find(this.props.data, { x: letter }), 'x')
     const computeTop = this.state.look === 'stacked'
       ? arr => this.y(_.sum(arr))
       : arr => this.y(_.max(arr))
@@ -56,7 +56,7 @@ class BarChart extends React.Component {
   }
 
   render() {
-    const {hover, chart} = this.props
+    const { hover, chart } = this.props
     return (
       <Wrapper className="barchart" hover={hover}>
         <button onClick={this.toggle}>Toggle</button>
@@ -72,10 +72,10 @@ class BarChart extends React.Component {
 
   toggle = () => {
     if (this.state.look === 'stacked') {
-      this.setState(state => ({look: 'grouped'}))
+      this.setState(state => ({ look: 'grouped' }))
       this.transitionGrouped()
     } else {
-      this.setState(state => ({look: 'stacked'}))
+      this.setState(state => ({ look: 'stacked' }))
       this.transitionStacked()
     }
   }
@@ -101,7 +101,7 @@ class BarChart extends React.Component {
     const n = groups.length // number of layers
     const layers = d3.stack().keys(groups)(data)
     const yStackMax = d3.max(layers, layer => d3.max(layer, d => d[1]))
-    const margin = {top: 20, right: 10, bottom: 50, left: 50}
+    const margin = { top: 20, right: 10, bottom: 50, left: 50 }
     const graphWidth = width - margin.left - margin.right
     const graphHeight = height - margin.top - margin.bottom - 18
     const x = d3
@@ -176,7 +176,7 @@ class BarChart extends React.Component {
       rect
         .transition()
         .delay((d, i) => (resize ? 0 : i * 10))
-        .attr('x', function(d, i) {
+        .attr('x', function (d, i) {
           let layerIndex = this.parentNode.__data__.index
           return x(d.data.x) + x.bandwidth() / n * layerIndex
         })
@@ -228,7 +228,7 @@ class BarChart extends React.Component {
         .transition()
         .duration(500)
         // .delay((d, i) => i * 10)
-        .attr('x', function(d, i) {
+        .attr('x', function (d, i) {
           let layerIndex = this.parentNode.__data__.index
           return x(d.data.x) + x.bandwidth() / n * layerIndex
         })
@@ -259,5 +259,5 @@ BarChart.defaultProps = {
 }
 
 export default withFauxDOM(
-  withD3Renderer({updateOn: ['data', 'xLabel', 'yLabel']})(BarChart)
+  withD3Renderer({ updateOn: ['data', 'xLabel', 'yLabel'] })(BarChart)
 )
